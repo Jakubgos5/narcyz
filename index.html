@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tytułaż</title>
+<style>
+:root{--bg:#f6f3ec;--bg2:#ece3cc;--ink:#1c1409;--muted:#6f5d3f;--gold1:#b8860b;--gold2:#f1c24b;--red:#b3202e;--glass:#ffffffb3;--line:#d9c690;--glow:#f1c24b66;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#07060b;--bg2:#1a0b12;--ink:#f7ecd0;--muted:#a99466;--gold1:#c9921a;--gold2:#ffd86b;--red:#e5384a;--glass:#16101ccc;--line:#4a3716;--glow:#ffd86b55;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#07060b;--bg2:#1a0b12;--ink:#f7ecd0;--muted:#a99466;--gold1:#c9921a;--gold2:#ffd86b;--red:#e5384a;--glass:#16101ccc;--line:#4a3716;--glow:#ffd86b55;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100%;color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);overflow-x:hidden}
+.bg{position:fixed;inset:0;z-index:-1;background:radial-gradient(ellipse at 50% -10%,var(--bg2),transparent 65%),var(--bg)}
+.rays{position:fixed;left:50%;top:-30vh;width:160vmax;height:160vmax;margin-left:-80vmax;z-index:-1;opacity:.18;background:repeating-conic-gradient(from 0deg,var(--gold2) 0 3deg,transparent 3deg 12deg);-webkit-mask:radial-gradient(circle,#000 0,transparent 55%);mask:radial-gradient(circle,#000 0,transparent 55%);animation:spin 90s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.wrap{max-width:760px;margin:0 auto;padding:22px 16px 48px;display:flex;flex-direction:column;gap:20px}
+.hero{position:relative;text-align:center;padding:34px 18px 26px;border-radius:28px;background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--line);box-shadow:0 0 0 1px var(--glow) inset,0 20px 60px -20px var(--glow)}
+.hero:before{content:"";position:absolute;inset:-1px;border-radius:28px;padding:1.5px;background:linear-gradient(135deg,var(--gold2),transparent 40%,var(--red) 70%,var(--gold2));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.arms{font-size:78px;line-height:1;filter:drop-shadow(0 0 22px var(--gold2));animation:pulse 3.5s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.07)}}
+.kicker{margin-top:12px;letter-spacing:.38em;text-transform:uppercase;font-size:11px;color:var(--muted);overflow-wrap:anywhere}
+.name{margin:6px 0 4px;font-size:clamp(36px,11vw,68px);font-weight:900;line-height:1.05;letter-spacing:-.02em;overflow-wrap:anywhere;background:linear-gradient(100deg,var(--gold1),var(--gold2),#fff6cf,var(--gold2),var(--gold1));background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite}
+@keyframes shine{to{background-position:-220% 0}}
+.nick{color:var(--muted);font-style:italic;min-height:1.2em}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stat{background:var(--glass);border:1px solid var(--line);border-radius:18px;padding:14px 8px;text-align:center;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.stat b{display:block;font-size:clamp(18px,5.4vw,28px);font-weight:900;overflow-wrap:anywhere;background:linear-gradient(var(--gold2),var(--gold1));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat span{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+.power{background:var(--glass);border:1px solid var(--line);border-radius:18px;padding:14px 16px}
+.power .top{display:flex;justify-content:space-between;gap:10px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.meter{height:14px;border-radius:14px;background:var(--line);overflow:hidden}
+.meter i{display:block;height:100%;width:0;border-radius:14px;background:linear-gradient(90deg,var(--gold1),var(--gold2),var(--red));box-shadow:0 0 18px var(--gold2);transition:width 1s cubic-bezier(.2,.8,.2,1)}
+.next{margin-top:8px;font-size:12px;color:var(--muted);text-align:center}
+.tytul{font-size:clamp(17px,4.6vw,21px);line-height:1.75;text-align:center;padding:6px 4px;margin:0}
+.chip{display:inline-block;margin:4px 2px;padding:4px 12px;border-radius:999px;border:1px solid var(--line);background:var(--glass);font-weight:600;animation:in .5s both}
+.chip small{font-size:10px;font-weight:800;margin-right:7px;padding:1px 6px;border-radius:999px;background:linear-gradient(90deg,var(--gold1),var(--gold2));color:#1c1409;letter-spacing:.04em}
+.chip.top{border-color:var(--gold2);box-shadow:0 0 14px var(--glow)}
+.empty{color:var(--muted);font-style:italic}
+@keyframes in{from{opacity:0;transform:translateY(10px) scale(.9)}}
+.row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+button{font:inherit;cursor:pointer;border-radius:12px;border:1px solid var(--line);background:var(--glass);color:var(--ink);padding:10px 16px;transition:.2s}
+button:hover{border-color:var(--gold2);box-shadow:0 0 16px var(--glow)}
+button:active{transform:scale(.96)}
+button.p{border:0;color:#1c1409;font-weight:800;background:linear-gradient(90deg,var(--gold1),var(--gold2))}
+details{border:1px solid var(--line);border-radius:18px;background:var(--glass);padding:14px 16px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+summary{cursor:pointer;font-weight:800;color:var(--gold1)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) summary{color:var(--gold2)}}
+:root[data-theme="dark"] summary{color:var(--gold2)}
+label{display:flex;flex-direction:column;gap:5px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:12px}
+input,select,textarea{font:inherit;text-transform:none;letter-spacing:0;background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:10px;width:100%}
+select option{color:#1c1409}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold2);box-shadow:0 0 0 3px var(--glow)}
+textarea{min-height:90px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;margin-top:10px}
+.hint{font-size:12px;color:var(--muted);margin:10px 0 0;line-height:1.5}
+.list{margin:12px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px}
+.list li{display:flex;gap:6px;align-items:center;border-bottom:1px solid var(--line);padding:6px 0}
+.list li input.t{flex:1;min-width:0;padding:7px 9px}
+.list li input.n{width:74px;flex:none;padding:7px 9px}
+.list button{padding:2px 9px;font-size:13px;border-radius:8px;flex:none}
+.lv{display:flex;align-items:center;gap:3px;flex:none}
+.lv b{min-width:42px;text-align:center;font-size:12px;color:var(--gold1)}
+.add{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
+.add input{flex:1 1 180px;width:auto}
+.add select{width:auto;flex:0 0 auto}
+.em{display:flex;flex-wrap:wrap;gap:6px}
+.em button{font-size:22px;padding:2px 9px}.em button.s{border-color:var(--gold2);box-shadow:0 0 14px var(--glow)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:520px){.two{grid-template-columns:1fr}}
+.presets{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.presets button{font-size:13px;padding:6px 12px}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:linear-gradient(90deg,var(--gold1),var(--gold2));color:#1c1409;font-weight:700;padding:9px 18px;border-radius:20px;opacity:0;transition:.3s;pointer-events:none;text-align:center;max-width:90vw}
+.toast.on{opacity:1}
+</style>
+</head>
+<body>
+<div class="bg"></div><div class="rays"></div>
+<div class="wrap">
+  <header class="hero">
+    <div class="arms" id="arms">👑</div>
+    <div class="kicker" id="kicker"></div>
+    <div class="name" id="name"></div>
+    <div class="nick" id="nick"></div>
+  </header>
+
+  <section class="stats">
+    <div class="stat"><b id="sCount">0</b><span>Tytułów</span></div>
+    <div class="stat"><b id="sLevel">1</b><span>Poziom</span></div>
+    <div class="stat"><b id="sRank">—</b><span>Ranga</span></div>
+  </section>
+
+  <section class="power">
+    <div class="top"><span>Potęga: <span id="pPow">0</span></span><span id="pPct">0%</span></div>
+    <div class="meter"><i id="meter"></i></div>
+    <div class="next" id="next"></div>
+  </section>
+
+  <p class="tytul" id="tytul"></p>
+
+  <div class="row">
+    <button id="short">📜 Krótki / pełny</button>
+    <button id="sort">↕ Sortowanie: <span id="sortL"></span></button>
+    <button class="p" id="copy">📋 Kopiuj</button>
+    <button id="theme">🌓 Motyw</button>
+  </div>
+
+  <details open>
+    <summary>📚 Moje tytuły</summary>
+    <div class="add">
+      <input id="newT" placeholder="Wpisz własny tytuł…" maxlength="80">
+      <select id="newL" aria-label="Level nowego tytułu"></select>
+      <button class="p" id="addB">Dodaj</button>
+    </div>
+    <ul class="list" id="list"></ul>
+    <p class="hint" id="listHint"></p>
+  </details>
+
+  <details>
+    <summary>🪜 Rangi i levele</summary>
+    <p class="hint">Każdy tytuł ma level 1–10. Jego moc to level² × 50. Suma mocy to Twoja potęga, a ranga zależy od progów poniżej. Edytuj nazwy i progi jak chcesz.</p>
+    <ul class="list" id="ladder"></ul>
+    <div class="add"><input id="newR" placeholder="Nazwa nowej rangi" maxlength="40"><input id="newRF" type="number" min="0" step="50" placeholder="Próg potęgi" style="flex:0 0 130px;width:130px"><button class="p" id="addR">Dodaj rangę</button></div>
+  </details>
+
+  <details>
+    <summary>👤 Profil</summary>
+    <label>Imię i numer<input id="fName" maxlength="30"></label>
+    <label>Przydomek<input id="fNick" maxlength="40"></label>
+    <label>Wstęp<input id="fKick" maxlength="40"></label>
+    <label>Herb<div class="em" id="em"></div></label>
+    <label>Własny herb (dowolny emoji)<input id="fArms" maxlength="4"></label>
+  </details>
+
+  <details>
+    <summary>⚙️ Szablony i dane</summary>
+    <p class="hint">Szablon ustawia tylko wstęp, herb i drabinę rang. Twoje tytuły zostają nietknięte.</p>
+    <div class="presets" id="presets"></div>
+    <p class="hint">Kopia zapasowa: wyeksportuj dane do tekstu albo wklej go i zaimportuj na innym urządzeniu.</p>
+    <div class="row" style="justify-content:flex-start;margin-top:10px">
+      <button id="exp">⬆ Eksport</button><button id="imp">⬇ Import</button><button id="clr">🗑 Wyczyść tytuły</button>
+    </div>
+    <textarea id="io" placeholder="Tu pojawi się JSON do eksportu / wklej JSON do importu"></textarea>
+  </details>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const KEY='tytulaz_v2',OLD='tytulaz_cesarski_v1';
+const MAXL=10;
+const PRESETS={
+  'Cesarski':{kick:'Z łaski własnej',arms:'👑',ladder:[['Szlachcic',0],['Baron',300],['Hrabia',900],['Książę',2000],['Król',4000],['Cesarz',7000],['Imperator',12000],['Władca Wszechświata',20000]]},
+  'Fantasy':{kick:'Z woli bogów',arms:'🐉',ladder:[['Giermek',0],['Rycerz',300],['Paladyn',900],['Arcymag',2000],['Smoczy Jeździec',4000],['Półbóg',8000],['Legenda',15000]]},
+  'Korpo':{kick:'Za zgodą zarządu',arms:'💼',ladder:[['Stażysta',0],['Specjalista',300],['Kierownik',900],['Dyrektor',2000],['VP',4000],['CEO',7000],['Prezes Wszechrzeczy',12000]]},
+  'Sci-fi':{kick:'Rozkazem Federacji',arms:'🚀',ladder:[['Kadet',0],['Pilot',300],['Kapitan',900],['Komandor',2000],['Admirał',4000],['Władca Galaktyki',9000]]},
+  'Sport':{kick:'Z mocy trofeów',arms:'🏆',ladder:[['Amator',0],['Zawodnik',300],['Mistrz',900],['Czempion',2000],['Legenda',4500],['GOAT',9000]]},
+  'Pusty':{kick:'',arms:'⭐',ladder:[['Start',0]]}
+};
+const ARMS=['👑','🦅','🦁','🐺','⚜️','🏰','🗡️','🔱','🐉','🛡️','🚀','🏆','⭐','🔥'];
+const mkLadder=a=>a.map(([n,f])=>({n,f}));
+const def=()=>({name:'Twoje Imię I',nick:'Zwany Kimś',kick:'Z łaski własnej',arms:'👑',theme:'',full:true,sort:'level',
+  titles:[],ladder:mkLadder(PRESETS['Cesarski'].ladder)});
+let S=def();
+const $=id=>document.getElementById(id);
+
+function load(){
+  try{
+    const s=localStorage.getItem(KEY);
+    if(s){S={...def(),...JSON.parse(s)};return}
+    const o=localStorage.getItem(OLD);
+    if(o){const p=JSON.parse(o);S={...def(),name:p.name||S.name,nick:p.nick||S.nick,kick:p.kick||S.kick,arms:p.arms||S.arms,theme:p.theme||'',full:p.full!==false,
+      titles:(p.titles||[]).map(t=>({t:String(t),l:3}))}}
+  }catch(e){}
+}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function clampL(n){n=Math.round(+n||1);return Math.max(1,Math.min(MAXL,n))}
+function tp(x){return x.l*x.l*50}
+function power(){return S.titles.reduce((a,x)=>a+tp(x),0)}
+function ladder(){const l=S.ladder.filter(r=>r.n.trim()).map(r=>({n:r.n,f:Math.max(0,+r.f||0)})).sort((a,b)=>a.f-b.f);return l.length?l:[{n:'Start',f:0}]}
+function rankInfo(p){const l=ladder();let i=0;l.forEach((r,k)=>{if(p>=r.f)i=k});return{cur:l[i],next:l[i+1]||null,idx:i,total:l.length}}
+function shown(){const a=S.titles.filter(x=>x.t.trim());if(S.sort==='level')return a.map((x,i)=>[x,i]).sort((a,b)=>b[0].l-a[0].l||a[1]-b[1]).map(z=>z[0]);return a}
+function visible(){const a=shown();return S.full?a:a.slice(0,3)}
+function plain(){
+  const v=visible().map(x=>x.t.trim());
+  const head=[S.kick.trim(),S.name.trim()].filter(Boolean).join(', ');
+  return [head].concat(v).filter(Boolean).join(', ')+'.';
+}
+function playerLevel(p){return Math.floor(Math.sqrt(p/60))+1}
+function animNum(el,to){const from=+el.dataset.v||0;el.dataset.v=to;const t0=performance.now();(function f(n){const k=Math.min(1,(n-t0)/700);el.textContent=Math.round(from+(to-from)*(1-Math.pow(1-k,3))).toLocaleString('pl-PL');if(k<1)requestAnimationFrame(f)})(t0)}
+function toast(m){const t=$('toast');t.textContent=m;t.classList.add('on');clearTimeout(toast.h);toast.h=setTimeout(()=>t.classList.remove('on'),1900)}
+function h(tag,props,kids){const e=document.createElement(tag);Object.assign(e,props||{});(kids||[]).forEach(k=>e.append(k));return e}
+
+let lastRank=null;
+function renderHero(){
+  $('arms').textContent=S.arms||'⭐';$('kicker').textContent=S.kick;$('name').textContent=S.name;$('nick').textContent=S.nick;
+  document.title=S.name+' – Tytułaż';
+  const t=$('tytul');t.innerHTML='';
+  const head=[S.kick.trim(),S.name.trim()].filter(Boolean).join(', ');
+  t.append(h('b',{textContent:head}),h('br'));
+  const v=visible();
+  if(!v.length)t.append(h('span',{className:'empty',textContent:'Brak tytułów. Dopisz pierwszy w sekcji „Moje tytuły” poniżej.'}));
+  v.forEach((x,i)=>{
+    const c=h('span',{className:'chip'+(x.l>=8?' top':'')});
+    c.style.animationDelay=i*70+'ms';
+    c.append(h('small',{textContent:'Lv'+x.l}),document.createTextNode(x.t.trim()));
+    t.append(c);
+  });
+}
+function renderStats(){
+  const p=power(),ri=rankInfo(p);
+  animNum($('sCount'),S.titles.filter(x=>x.t.trim()).length);
+  $('sLevel').textContent=playerLevel(p);
+  $('sRank').textContent=ri.cur.n;
+  animNum($('pPow'),p);
+  let pct=100,txt='Najwyższa ranga osiągnięta';
+  if(ri.next){pct=Math.round((p-ri.cur.f)/(ri.next.f-ri.cur.f)*100);txt='Do rangi „'+ri.next.n+'” brakuje '+(ri.next.f-p).toLocaleString('pl-PL')}
+  $('meter').style.width=pct+'%';$('pPct').textContent=pct+'%'+(ri.next?'':' · MAKSIMUM');$('next').textContent=txt;
+  if(lastRank!==null&&ri.cur.n!==lastRank&&ri.idx>0)toast('Awans! Nowa ranga: '+ri.cur.n);
+  lastRank=ri.cur.n;
+  $('sortL').textContent=S.sort==='level'?'po levelu':'ręczne';
+}
+function renderList(){
+  const ul=$('list');ul.innerHTML='';
+  S.titles.forEach((x,i)=>{
+    const t=h('input',{className:'t',value:x.t,maxLength:80,ariaLabel:'Tytuł'});
+    t.oninput=()=>{x.t=t.value;save();renderHero();renderStats()};
+    const lv=h('b',{textContent:'Lv '+x.l});
+    const mk=(txt,d)=>h('button',{textContent:txt,onclick:()=>{x.l=clampL(x.l+d);save();renderAll()}});
+    const up=h('button',{textContent:'↑',onclick:()=>{if(i>0){[S.titles[i-1],S.titles[i]]=[S.titles[i],S.titles[i-1]];save();renderAll()}}});
+    const del=h('button',{textContent:'✕',onclick:()=>{S.titles.splice(i,1);save();renderAll()}});
+    ul.append(h('li',{},[t,h('div',{className:'lv'},[mk('−',-1),lv,mk('+',1)]),up,del]));
+  });
+  $('listHint').textContent=S.titles.length?'Strzałką ↑ zmieniasz kolejność ręczną. Przy sortowaniu „po levelu” wyższy level idzie wyżej.':'Lista jest pusta. Tytuły wymyślasz sam: wpisz nazwę, wybierz level i kliknij „Dodaj”.';
+}
+function renderLadder(){
+  const ul=$('ladder');ul.innerHTML='';
+  S.ladder.forEach((r,i)=>{
+    const n=h('input',{className:'t',value:r.n,maxLength:40,ariaLabel:'Nazwa rangi'});
+    n.oninput=()=>{r.n=n.value;save();renderHero();renderStats()};
+    const f=h('input',{className:'n',type:'number',min:0,step:50,value:r.f,ariaLabel:'Próg potęgi'});
+    f.oninput=()=>{r.f=Math.max(0,+f.value||0);save();renderStats()};
+    const del=h('button',{textContent:'✕',onclick:()=>{if(S.ladder.length>1){S.ladder.splice(i,1);save();renderAll()}else toast('Zostaw przynajmniej jedną rangę')}});
+    ul.append(h('li',{},[n,f,del]));
+  });
+}
+function renderEmblems(){
+  const em=$('em');em.innerHTML='';
+  ARMS.forEach(e=>{em.append(h('button',{textContent:e,className:e===S.arms?'s':'',onclick:()=>{S.arms=e;$('fArms').value=e;save();renderAll()}}))});
+}
+function renderTheme(){if(S.theme)document.documentElement.setAttribute('data-theme',S.theme);else document.documentElement.removeAttribute('data-theme')}
+function renderAll(){renderTheme();renderHero();renderStats();renderList();renderLadder();renderEmblems()}
+
+function init(){
+  for(let i=1;i<=MAXL;i++)$('newL').append(h('option',{value:i,textContent:'Lv '+i,selected:i===3}));
+  $('fName').value=S.name;$('fNick').value=S.nick;$('fKick').value=S.kick;$('fArms').value=S.arms;
+  const pr=$('presets');
+  Object.keys(PRESETS).forEach(k=>pr.append(h('button',{textContent:k,onclick:()=>{const p=PRESETS[k];S.kick=p.kick;S.arms=p.arms;S.ladder=mkLadder(p.ladder);$('fKick').value=S.kick;$('fArms').value=S.arms;lastRank=null;save();renderAll();toast('Szablon: '+k)}})));
+}
+$('fName').oninput=e=>{S.name=e.target.value||'Bezimienny';save();renderHero()};
+$('fNick').oninput=e=>{S.nick=e.target.value;save();renderHero()};
+$('fKick').oninput=e=>{S.kick=e.target.value;save();renderHero()};
+$('fArms').oninput=e=>{S.arms=e.target.value||'⭐';save();renderHero();renderEmblems()};
+function addTitle(){const v=$('newT').value.trim();if(!v){toast('Najpierw wpisz tytuł');return}S.titles.push({t:v,l:clampL($('newL').value)});$('newT').value='';save();renderAll();$('newT').focus()}
+$('addB').onclick=addTitle;
+$('newT').onkeydown=e=>{if(e.key==='Enter')addTitle()};
+function addRank(){const n=$('newR').value.trim();if(!n){toast('Wpisz nazwę rangi');return}S.ladder.push({n,f:Math.max(0,+$('newRF').value||0)});$('newR').value='';$('newRF').value='';save();renderAll()}
+$('addR').onclick=addRank;
+$('newR').onkeydown=e=>{if(e.key==='Enter')addRank()};
+$('short').onclick=()=>{S.full=!S.full;save();renderHero();toast(S.full?'Wersja pełna':'Wersja krótka (3 najwyższe)')};
+$('sort').onclick=()=>{S.sort=S.sort==='level'?'manual':'level';save();renderHero();renderStats()};
+$('copy').onclick=()=>{const t=plain();try{navigator.clipboard.writeText(t).then(()=>toast('Skopiowano'),()=>toast('Nie udało się skopiować'))}catch(e){toast('Nie udało się skopiować')}};
+$('theme').onclick=()=>{const dark=document.documentElement.getAttribute('data-theme')==='dark'||(!S.theme&&matchMedia('(prefers-color-scheme: dark)').matches);S.theme=dark?'light':'dark';save();renderTheme()};
+$('exp').onclick=()=>{const j=JSON.stringify(S,null,1);$('io').value=j;try{navigator.clipboard.writeText(j).then(()=>toast('Wyeksportowano i skopiowano'),()=>toast('Wyeksportowano'))}catch(e){toast('Wyeksportowano')}};
+$('imp').onclick=()=>{
+  try{
+    const o=JSON.parse($('io').value);
+    if(!o||typeof o!=='object'||!Array.isArray(o.titles))throw 0;
+    const d=def();
+    S={...d,...o,titles:o.titles.map(x=>typeof x==='string'?{t:x,l:3}:{t:String(x.t||''),l:clampL(x.l)}),
+       ladder:Array.isArray(o.ladder)&&o.ladder.length?o.ladder.map(r=>({n:String(r.n||''),f:Math.max(0,+r.f||0)})):d.ladder};
+    $('fName').value=S.name;$('fNick').value=S.nick;$('fKick').value=S.kick;$('fArms').value=S.arms;
+    lastRank=null;save();renderAll();toast('Zaimportowano');
+  }catch(e){toast('Niepoprawny JSON')}
+};
+$('clr').onclick=()=>{if(!S.titles.length)return;if(confirm('Usunąć wszystkie tytuły?')){S.titles=[];save();renderAll()}};
+
+load();init();renderAll();
+</script>
+</body>
+</html>
